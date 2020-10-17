@@ -1,0 +1,54 @@
+<template>
+  <div class="party-page">
+    <div class="party-intro">
+      <div class="party-flag">
+        <img src="GERB_PP.png" alt="gerb-logo" />
+      </div>
+      <PartyDetails :partyInfo="partyInfo" :partyDetails="partyDetails" />
+    </div>
+    <PartyPurpose :partyPurposeList="partyPurposes" purposeText="Zweck der Partei" />
+    <Authentication v-show="!this.$store.state.user.userUID" />
+    <div class="party-comment-section" v-if="this.$store.state.user.userUID">
+     <div class="positive-section">
+        <PartyPagePositiveCommentSection :partyDetails="partyDetails" />
+      </div>
+      <div class="negative-section">
+        <PartyPageNegativeCommentSection :partyDetails="partyDetails" />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      partyDetails: { country: 'bulgaria', dbcode: '' },
+      partyInfo: {
+        name: 'Citizens for European Development of Bulgaria',
+        shortname: 'GERB',
+        established: '03/12/2006',
+        founder: 'pl.Bulgaria 1, NDK Administrative Building. 17Floor,1511 Sofia,Bulgaria',
+        internet_address: 'https://gerb.bg/',
+        public_relation: 'Boyko Borisov',
+        current_member: '94,000',
+        president: 'Boyko Borisov',
+        facebook: 'https://www.facebook.com/PPGERB',
+        twitter: 'https://twitter.com/PPGERB',
+        phone: '+359 2 490 1313',
+      },
+      partyPurposes: [
+        {
+          description:
+            'GERB has defined itself as a Christian Democratic/Conservative, i.e. a center-right/rightist party. It is supposed to be ideologically similar to the German Christian Democratic Union and the Christian Social Union of Bavaria.
+
+GERB is believed to be moderately nationalist, and its leaders, including Borisov, have engaged in anti-socialist and anti-communist rhetoric, condemning all political structures that ever had connections with the so called State Security services of the former Communist regime in Bulgaria, especially the Bulgarian Socialist Party and the ethnic Turkish Movement for Rights and Freedoms (DPS).
+',
+        }
+      ],
+    }
+  },
+}
+</script>
+
+<style lang="scss" scoped></style>
